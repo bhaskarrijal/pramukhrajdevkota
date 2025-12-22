@@ -5,7 +5,7 @@ import { IoLogoTwitter, IoLogoLinkedin, IoLogoGithub, IoMailOutline } from "reac
 export default function Header() {
     return (
         <header className="max-w-2xl mx-auto px-4 pt-8">
-            <div className="flex flex-col items-center gap-6 pb-8 border-b border-gray-300 border-dashed md:flex-row md:items-center">
+            <div className="flex flex-col items-start gap-6 pb-8 border-b border-gray-300 border-dashed md:flex-row md:items-center">
                 <Image
                     src="/avatar.png"
                     alt="Pramukh Raj Devkota"
