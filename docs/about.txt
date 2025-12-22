@@ -1,0 +1,85 @@
+Pramukh Raj Devkota
+I work on scaling DTC brands by applying first-principles thinking to email and retention
+especially when things start to behave unpredictably at scale.
+I’m the founder of EmailOptimize and Trustalytics.ai (currently in R&D), where my focus has
+been on understanding how consumer trust, relevance, and behavior compound or decay over
+time inside email systems.
+Before that, I led email marketing at E2.Agency, worked across hundreds of ecommerce
+brands, and spent years experimenting at the intersection of engineering, consumer behavior,
+and retention.
+I originally studied engineering in China, later pursued a Master’s in Engineering Management
+in Australia, and became early-interested in quantifying consumer trust long before the tooling
+existed to support it. Some ideas had to wait. Others became this work.
+This perspective comes from watching the same failure pattern repeat itself across brands of
+very different sizes.
+Most email programs don’t fail.
+They decay.
+At first, everything looks fine. Revenue is still coming in. Campaigns still convert. Automations
+are firing. Dashboards don’t show anything obviously broken.
+But underneath the surface, relevance starts slipping.
+Engagement thins out. Inbox trust weakens. You need to send a little more often to get the
+same result. Then a little more. Then a lot more. At some point, performance becomes volatile,
+not terrible, just unpredictable. Good weeks followed by inexplicable drops. Deliverability issues
+that seem to come and go. Revenue that used to compound now has to be chased.
+Most teams only react once the problem shows up clearly in the metrics.
+By then, it’s already late. The inbox has learned how to treat you.
+This is the phase I get pulled into.
+I work with ecommerce brands often doing anywhere from $2M to $20M+ per year where email
+and SMS already matter. These aren’t beginners. There’s usually an in-house team. Sometimes
+an agency. Often both. On the surface, things are being executed correctly.
+But results are flattening.
+Or becoming fragile.
+Or harder to explain month to month.
+The common assumption is that the issue is tactical. Creative fatigue. Deliverability
+infrastructure. Not enough flows. Too many flows. The wrong ESP. The wrong sending times.
+The wrong subject lines.
+In reality, those are rarely the root problem.
+What’s breaking is the relevance of how inboxes and recipients respond to your behavior over
+time.
+Email is not a landing page.
+It’s a behavioral system with memory.
+When you scale volume faster than permission, automate without restraint, or optimize for clicks
+without accounting for long-term signals, the system starts pushing back.
+Quietly.
+This is why so many teams end up stuck in the same loop: sending more to make up for
+declining engagement, which accelerates the decline even further. Short-term lifts at the cost of
+long-term fragility.
+The lens I use for this work is simple, but unforgiving:
+Delivered → Opened → Read → Taken Action
+(You can read more about the DORTA framework here.)
+If these layers aren’t respected in order, scale doesn’t create leverage.
+It creates risk.
+Most strategies jump straight to action clicks, conversions, revenue while assuming everything
+upstream is stable.
+It isn’t.
+You can’t automate your way out of a relevance problem.
+You can’t creative-test your way out of inbox distrust.
+And you can’t volume your way back into permission.
+Over the last decade, I’ve worked across hundreds of ecommerce brands, including
+companies doing well over $100M per year, where email and SMS contribute 30–60% of total
+revenue.
+In almost every case, I wasn’t brought in to “improve email marketing.”
+I was brought in to stabilize a system that had started behaving unpredictably at scale.
+These engagements tend to be long-term. Not because the work is slow, but because the goal
+isn’t a spike, it's compounding. This kind of work rarely looks impressive in week one. It
+becomes obvious months later, when revenue stops swinging and starts behaving again.
+This isn’t for everyone.
+If you’re just getting started with email, this won’t be a fit.
+If you’re looking for templates, quick wins, or someone to “set up flows,” this won’t be helpful.
+And if email isn’t already a meaningful part of your business, there are better places to focus
+your energy.
+But if email already works and you can feel that it’s starting to lose its edge, that's the window
+where this matters most.
+Most of this work happens quietly. There’s no big relaunch. No flashy redesign. Just a
+re-anchoring of how the system behaves, so it compounds instead of decaying.
+If this reflects what you’re seeing, you already know whether a conversation makes sense.
+You can reach me directly on WhatsApp.
+Similar to how https://eurekalabs.ai/ leads into, we need 2 additional websites.
+EmailOptimize
+A consulting practice focused on stabilizing and compounding email & SMS revenue for
+ecommerce brands once scale introduces fragility. This is where I work directly with teams on
+sequencing, relevance, and system behavior over time.
+Trustalytics.ai
+An R&D effort exploring how consumer trust, relevance, and behavioral signals can be
+quantified inside email systems. This work is still early, and largely experimental but it informs
+how I think about long-term compounding in retention.
