@@ -7,7 +7,7 @@ export default function Header() {
         <header className="max-w-2xl mx-auto px-4 pt-8">
             <div className="flex flex-col items-start gap-6 pb-8 border-b border-gray-300 border-dashed md:flex-row md:items-center">
                 <Image
-                    src="/avatar.png"
+                    src="/avatar.webp"
                     alt="Pramukh Raj Devkota"
                     width={115}
                     height={115}
