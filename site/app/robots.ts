@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/admin/'],
       },
+      // OpenAI
       {
         userAgent: 'GPTBot',
         allow: '/',
@@ -17,16 +18,43 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'ChatGPT-User',
         allow: '/',
       },
+      // Google
       {
         userAgent: 'Google-Extended',
         allow: '/',
       },
+      // Anthropic (Claude)
       {
         userAgent: 'anthropic-ai',
         allow: '/',
       },
       {
         userAgent: 'Claude-Web',
+        allow: '/',
+      },
+      // Perplexity
+      {
+        userAgent: 'PerplexityBot',
+        allow: '/',
+      },
+      // Meta
+      {
+        userAgent: 'FacebookBot',
+        allow: '/',
+      },
+      // Common Crawl (used by many AI models)
+      {
+        userAgent: 'CCBot',
+        allow: '/',
+      },
+      // Diffbot
+      {
+        userAgent: 'Diffbot',
+        allow: '/',
+      },
+      // Cohere
+      {
+        userAgent: 'cohere-ai',
         allow: '/',
       },
     ],

@@ -123,3 +123,72 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
     })),
   };
 }
+
+// FAQ Schema for AI optimization
+export function generateFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+// Speakable Schema for voice assistants
+export function generateSpeakableSchema(cssSelectors: string[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
+// HowTo Schema for step-by-step guides
+export function generateHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string }>
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+// Enhanced Article Schema with speakable content
+export function generateEnhancedArticleSchema(
+  post: any,
+  author: any,
+  featuredImage: any,
+  speakableSections: string[]
+) {
+  const baseSchema = generateArticleSchema(post, author, featuredImage);
+  return {
+    ...baseSchema,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: speakableSections,
+    },
+    // Add more AI-friendly metadata
+    abstract: post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim().substring(0, 200),
+    articleSection: "Email Marketing & Consumer Trust",
+    wordCount: post.content?.rendered?.replace(/<[^>]*>/g, "").split(/\s+/).length || 0,
+  };
+}

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Header from "@/app/components/header";
 import type { Metadata } from "next";
 import { seoConfig } from "@/lib/seo-config";
-import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateEnhancedArticleSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 600;
 
@@ -107,7 +107,14 @@ export default async function PostPage({
     day: "numeric",
   });
 
-  const articleSchema = generateArticleSchema(post, author, featuredMedia);
+  // Enhanced Article Schema with speakable content for voice assistants
+  const articleSchema = generateEnhancedArticleSchema(
+    post, 
+    author, 
+    featuredMedia,
+    ['article h1', 'article p:first-of-type', 'article h2'] // Speakable sections
+  );
+  
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: seoConfig.siteUrl },
     { name: "Writings", url: `${seoConfig.siteUrl}/#writings` },
