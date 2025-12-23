@@ -155,7 +155,7 @@ export default async function PostPage({
                 alt={post.title.rendered}
                 width={featuredMedia.media_details?.width || 1200}
                 height={featuredMedia.media_details?.height || 630}
-                className="w-full h-auto rounded-none sm:rounded-lg"
+                className="w-full h-auto"
                 quality={85}
                 sizes="(max-width: 768px) 100vw, 896px"
                 priority
@@ -182,13 +182,13 @@ export default async function PostPage({
               [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-1.5 [&_ol]:text-gray-700
               [&_li]:pl-2
               [&_li_ul]:mt-1.5 [&_li_ol]:mt-1.5
-              [&_code]:relative [&_code]:rounded [&_code]:bg-gray-100 [&_code]:px-[0.3rem] [&_code]:py-[0.2rem] [&_code]:font-mono [&_code]:text-sm [&_code]:font-medium
-              [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-gray-200 [&_pre]:bg-gray-50 [&_pre]:p-4 [&_pre]:my-4
+              [&_code]:relative [&_code]:bg-gray-100 [&_code]:px-[0.3rem] [&_code]:py-[0.2rem] [&_code]:font-mono [&_code]:text-sm [&_code]:font-medium
+              [&_pre]:overflow-x-auto [&_pre]:border [&_pre]:border-gray-200 [&_pre]:bg-gray-50 [&_pre]:p-4 [&_pre]:my-4
               [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:block [&_pre_code]:w-full
               [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-4 [&_blockquote]:py-1 [&_blockquote]:my-4 [&_blockquote]:text-gray-600 [&_blockquote]:italic
-              [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto
+              [&_img]:border [&_img]:border-gray-200 [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto
               [&_hr]:my-8 [&_hr]:border-t [&_hr]:border-gray-200
-              [&_table]:w-full [&_table]:my-4 [&_table]:border [&_table]:border-gray-200 [&_table]:rounded-lg
+              [&_table]:w-full [&_table]:my-4 [&_table]:border [&_table]:border-gray-200
               [&_thead]:bg-gray-50
               [&_th]:border-r [&_th]:border-gray-200 [&_th]:px-4 [&_th]:py-2 [&_th]:text-left [&_th]:font-semibold [&_th]:last:border-0
               [&_td]:border-r [&_td]:border-gray-200 [&_td]:px-4 [&_td]:py-2 [&_td]:last:border-0 [&_td]:text-gray-700
