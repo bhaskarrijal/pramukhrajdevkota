@@ -1,9 +1,20 @@
 import Link from "next/link";
+import { getAllPosts } from "@/lib/wordpress";
+import Header from "./components/header";
 
-export default function Home() {
+// ISR - Revalidate every 10 minutes (600 seconds)
+// This pre-renders the page at build time and revalidates in the background
+export const revalidate = 600;
+
+export default async function Home() {
+  // Fetch posts at build time - page is cached and served instantly
+  const posts = await getAllPosts();
+
   return (
-    <main className="max-w-2xl mx-auto px-4 pt-4">
-      <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+    <>
+      <Header />
+      <main className="max-w-2xl mx-auto px-4 pt-4">
+        <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
         <p>
           I'm the founder of <a href="/emailoptimize">EmailOptimize</a> and <Link href="/trustalytics">Trustalytics.ai</Link> (currently in R&D), where my focus has
           been on understanding how consumer trust, relevance, and behavior compound or decay over
@@ -33,10 +44,10 @@ export default function Home() {
             in Australia, and became early-interested in quantifying consumer trust long before the tooling
             existed to support it.
           </p>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
+    <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
         <h2 className="text-base font-semibold mb-2.5 text-black">My approach</h2>
         <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
           <p className="font-semibold">
@@ -70,7 +81,28 @@ export default function Home() {
       <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
         <h2 className="text-base font-semibold mb-2.5 text-black">Writings</h2>
         <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
-          {/* Blog posts will be integrated here via CMS */}
+          {posts.length > 0 ? (
+            posts.map((post) => {
+              const date = new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              });
+              return (
+                <div key={post.id} className="flex justify-between items-baseline gap-4">
+                  <span className="whitespace-nowrap">[{date}]</span>
+                  <Link 
+                    href={`/posts/${post.slug}`}
+                    className="hover:underline text-gray-900 flex-1"
+                  >
+                    {post.title.rendered}
+                  </Link>
+                </div>
+              );
+            })
+          ) : (
+            <p className="text-gray-500">No writings yet.</p>
+          )}
         </div>
       </section>
 
@@ -85,5 +117,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoLogoTwitter, IoLogoLinkedin, IoLogoGithub, IoMailOutline } from "react-icons/io5";
 
-export default function Header() {
+export default function Header({ borderPosition = "bottom" }: { borderPosition?: "top" | "bottom" }) {
+    const borderClass = borderPosition === "top" ? "border-t pt-8" : "border-b";
+    
     return (
         <header className="max-w-2xl mx-auto px-4 pt-8">
-            <div className="flex flex-col items-start gap-6 pb-8 border-b border-gray-300 border-dashed md:flex-row md:items-center">
+            <div className={`flex flex-col items-start gap-6 pb-8 ${borderClass} border-gray-300 border-dashed md:flex-row md:items-center`}>
                 <Image
                     src="/avatar.webp"
                     alt="Pramukh Raj Devkota"
