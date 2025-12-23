@@ -1,8 +1,10 @@
-import { getPostBySlug, getAllPosts, getFeaturedMediaById } from "@/lib/wordpress";
+import { getPostBySlug, getAllPosts, getFeaturedMediaById, getAuthorById } from "@/lib/wordpress";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/app/components/header";
 import type { Metadata } from "next";
+import { seoConfig } from "@/lib/seo-config";
+import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 600;
 
@@ -22,14 +24,57 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    return {};
+    return {
+      title: 'Post Not Found',
+    };
   }
 
-  const description = post.excerpt.rendered.replace(/<[^>]*>/g, "").trim();
+  let featuredImage = null;
+  if (post.featured_media) {
+    featuredImage = await getFeaturedMediaById(post.featured_media);
+  }
+
+  const excerpt = post.excerpt?.rendered
+    ? post.excerpt.rendered.replace(/<[^>]*>/g, '').trim()
+    : post.title.rendered;
+
+  const description = excerpt.length > 160 ? excerpt.substring(0, 157) + '...' : excerpt;
+  const imageUrl = featuredImage?.source_url || `${seoConfig.siteUrl}/og.png`;
+  const postUrl = `${seoConfig.siteUrl}/posts/${slug}`;
 
   return {
     title: post.title.rendered,
-    description: description,
+    description,
+    authors: [{ name: seoConfig.author.name }],
+    openGraph: {
+      type: 'article',
+      url: postUrl,
+      title: post.title.rendered,
+      description,
+      publishedTime: post.date,
+      modifiedTime: post.modified,
+      authors: [seoConfig.author.name],
+      section: 'Email Marketing',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title.rendered,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: seoConfig.twitterHandle,
+      creator: seoConfig.twitterHandle,
+      title: post.title.rendered,
+      description,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: postUrl,
+    },
   };
 }
 
@@ -49,14 +94,34 @@ export default async function PostPage({
     ? await getFeaturedMediaById(post.featured_media)
     : null;
 
-  const date = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  // Use default author since WordPress may block user API
+  const author = {
+    id: post.author,
+    name: "Pramukh Raj Devkota",
+    url: seoConfig.siteUrl,
+  };
+
+  const date = new Date(post.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
+
+  const articleSchema = generateArticleSchema(post, author, featuredMedia);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: seoConfig.siteUrl },
+    { name: "Writings", url: `${seoConfig.siteUrl}/#writings` },
+    { name: post.title.rendered, url: `${seoConfig.siteUrl}/posts/${slug}` },
+  ]);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([articleSchema, breadcrumbSchema]),
+        }}
+      />
       <main className="max-w-2xl mx-auto px-4 pt-4 pb-8">
         <Link 
           href="/" 
@@ -83,7 +148,7 @@ export default async function PostPage({
                 alt={post.title.rendered}
                 width={featuredMedia.media_details?.width || 1200}
                 height={featuredMedia.media_details?.height || 630}
-                className="w-full h-auto rounded-none"
+                className="w-full h-auto rounded-none sm:rounded-lg"
                 quality={85}
                 sizes="(max-width: 768px) 100vw, 896px"
                 priority
@@ -114,7 +179,7 @@ export default async function PostPage({
               [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-gray-200 [&_pre]:bg-gray-50 [&_pre]:p-4 [&_pre]:my-4
               [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:block [&_pre_code]:w-full
               [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-4 [&_blockquote]:py-1 [&_blockquote]:my-4 [&_blockquote]:text-gray-600 [&_blockquote]:italic
-              [&_img]:rounded-none [&_img]:border [&_img]:border-gray-200 [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto
+              [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto
               [&_hr]:my-8 [&_hr]:border-t [&_hr]:border-gray-200
               [&_table]:w-full [&_table]:my-4 [&_table]:border [&_table]:border-gray-200 [&_table]:rounded-lg
               [&_thead]:bg-gray-50

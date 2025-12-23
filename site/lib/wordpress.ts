@@ -166,8 +166,23 @@ export async function getAllAuthors(): Promise<Author[]> {
 }
 
 export async function getAuthorById(id: number): Promise<Author> {
-  const url = getUrl(`/wp-json/wp/v2/users/${id}`);
-  return wordpressFetch<Author>(url);
+  try {
+    const url = getUrl(`/wp-json/wp/v2/users/${id}`);
+    return wordpressFetch<Author>(url);
+  } catch (error) {
+    // Return a default author if the API request fails (403 or other errors)
+    console.warn(`Failed to fetch author ${id}, using default`);
+    return {
+      id,
+      name: "Pramukh Raj Devkota",
+      url: "",
+      description: "",
+      link: "",
+      slug: "",
+      avatar_urls: {},
+      meta: {},
+    };
+  }
 }
 
 export async function getAuthorBySlug(slug: string): Promise<Author> {
