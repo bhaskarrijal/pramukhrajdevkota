@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/wordpress";
+import type { Post } from "@/lib/wordpress.d";
 import Header from "./components/header";
 
 // ISR - Revalidate every 10 minutes (600 seconds)
@@ -9,7 +10,12 @@ export const revalidate = 600;
 export default async function Home() {
   // Fetch posts at build time - page is cached and served instantly
   // Returns empty array if WordPress is unavailable
-  const posts = await getAllPosts();
+  let posts: Post[] = [];
+  try {
+    posts = await getAllPosts();
+  } catch (error) {
+    console.warn('Failed to fetch posts in Home page:', error);
+  }
 
   return (
     <>
