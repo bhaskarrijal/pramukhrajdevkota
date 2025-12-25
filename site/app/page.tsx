@@ -23,7 +23,7 @@ export default async function Home() {
       <main className="max-w-2xl mx-auto px-4 pt-4">
         <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
           <p>
-            I'm the founder of <a href="https://emailoptimize.com" target="_blank" rel="noopener noreferrer">emailoptimize.com</a>, <a href="https://trustalytics.ai" target="_blank" rel="noopener noreferrer">trustalytics.ai</a> and <a href="https://dortamethod.com" target="_blank" rel="noopener noreferrer">dortamethod.com</a> (currently in R&D), where my focus has
+            I'm the founder of <a href="https://emailoptimize.com" target="_blank" rel="noopener noreferrer">emailoptimize.com</a> and <a href="https://trustalytics.ai" target="_blank" rel="noopener noreferrer">trustalytics.ai</a>, where my focus has
             been on understanding how consumer trust, relevance, and behavior compound or decay over
             time inside email systems.
           </p>
