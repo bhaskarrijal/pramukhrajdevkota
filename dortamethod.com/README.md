@@ -370,7 +370,7 @@ dortamethod.com/
 ## Support & Contact
 
 **Author**: Pramukh Raj Devkota
-**Website**: https://pramukhrajdevkota.com
+**Website**: https://pramukhdevkota.com
 **X (Twitter)**: https://x.com/Devkota824249
 **Facebook**: https://www.facebook.com/rukhpam/
 
