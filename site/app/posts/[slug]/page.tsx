@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts, getFeaturedMediaById, getAuthorById } from "@/lib/wordpress";
+import { getPostBySlug, getAllPosts, getFeaturedMediaById } from "@/lib/wordpress";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/app/components/header";
@@ -9,10 +9,16 @@ import { generateEnhancedArticleSchema, generateBreadcrumbSchema } from "@/lib/s
 export const revalidate = 600;
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  try {
+    const posts = await getAllPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to generate static params, WordPress may be down:', error);
+    // Return empty array to allow build to succeed when WordPress is unavailable
+    return [];
+  }
 }
 
 export async function generateMetadata({

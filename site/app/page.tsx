@@ -8,6 +8,7 @@ export const revalidate = 600;
 
 export default async function Home() {
   // Fetch posts at build time - page is cached and served instantly
+  // Returns empty array if WordPress is unavailable
   const posts = await getAllPosts();
 
   return (
