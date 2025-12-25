@@ -58,37 +58,42 @@ export async function getAllPosts(filterParams?: {
   category?: string;
   search?: string;
 }): Promise<Post[]> {
-  const query: Record<string, any> = {
-    _embed: true,
-    per_page: 100,
-  };
+  try {
+    const query: Record<string, any> = {
+      _embed: true,
+      per_page: 100,
+    };
 
-  if (filterParams?.search) {
-    query.search = filterParams.search;
+    if (filterParams?.search) {
+      query.search = filterParams.search;
 
-    if (filterParams?.author) {
-      query.author = filterParams.author;
+      if (filterParams?.author) {
+        query.author = filterParams.author;
+      }
+      if (filterParams?.tag) {
+        query.tags = filterParams.tag;
+      }
+      if (filterParams?.category) {
+        query.categories = filterParams.category;
+      }
+    } else {
+      if (filterParams?.author) {
+        query.author = filterParams.author;
+      }
+      if (filterParams?.tag) {
+        query.tags = filterParams.tag;
+      }
+      if (filterParams?.category) {
+        query.categories = filterParams.category;
+      }
     }
-    if (filterParams?.tag) {
-      query.tags = filterParams.tag;
-    }
-    if (filterParams?.category) {
-      query.categories = filterParams.category;
-    }
-  } else {
-    if (filterParams?.author) {
-      query.author = filterParams.author;
-    }
-    if (filterParams?.tag) {
-      query.tags = filterParams.tag;
-    }
-    if (filterParams?.category) {
-      query.categories = filterParams.category;
-    }
+
+    const url = getUrl("/wp-json/wp/v2/posts", query);
+    return wordpressFetch<Post[]>(url);
+  } catch (error) {
+    console.warn("Failed to fetch posts from WordPress API:", error);
+    return [];
   }
-
-  const url = getUrl("/wp-json/wp/v2/posts", query);
-  return wordpressFetch<Post[]>(url);
 }
 
 export async function getPostById(id: number): Promise<Post> {
@@ -96,10 +101,15 @@ export async function getPostById(id: number): Promise<Post> {
   return wordpressFetch<Post>(url);
 }
 
-export async function getPostBySlug(slug: string): Promise<Post> {
-  const url = getUrl("/wp-json/wp/v2/posts", { slug });
-  const response = await wordpressFetch<Post[]>(url);
-  return response[0];
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  try {
+    const url = getUrl("/wp-json/wp/v2/posts", { slug });
+    const response = await wordpressFetch<Post[]>(url);
+    return response[0] || null;
+  } catch (error) {
+    console.warn(`Failed to fetch post with slug "${slug}" from WordPress API:`, error);
+    return null;
+  }
 }
 
 export async function getAllCategories(): Promise<Category[]> {
@@ -196,9 +206,14 @@ export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
   return wordpressFetch<Post[]>(url);
 }
 
-export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
-  const url = getUrl(`/wp-json/wp/v2/media/${id}`);
-  return wordpressFetch<FeaturedMedia>(url);
+export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia | null> {
+  try {
+    const url = getUrl(`/wp-json/wp/v2/media/${id}`);
+    return wordpressFetch<FeaturedMedia>(url);
+  } catch (error) {
+    console.warn(`Failed to fetch featured media ${id} from WordPress API:`, error);
+    return null;
+  }
 }
 
 export { WordPressAPIError };

@@ -87,7 +87,17 @@ export default async function PostPage({
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    return <div>Post not found</div>;
+    return (
+      <main className="max-w-2xl mx-auto px-4 pt-4 pb-8">
+        <Link 
+          href="/" 
+          className="text-sm text-gray-600 hover:text-gray-900 inline-block"
+        >
+          ← Back
+        </Link>
+        <div className="mt-6">Post not found</div>
+      </main>
+    );
   }
 
   const featuredMedia = post.featured_media
