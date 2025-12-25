@@ -15,17 +15,12 @@ export default async function Home() {
       <Header />
       <main className="max-w-2xl mx-auto px-4 pt-4">
         <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
-        <p>
-          I'm the founder of <a href="/emailoptimize">EmailOptimize</a> and <Link href="/trustalytics">Trustalytics.ai</Link> (currently in R&D), where my focus has
-          been on understanding how consumer trust, relevance, and behavior compound or decay over
-          time inside email systems.
-        </p>
-        <p>
-          Before that, I led email marketing at <a href="https://e2.agency" target="_blank" rel="noopener noreferrer">E2.Agency</a>, worked across hundreds of ecommerce
-          brands, and spent years experimenting at the intersection of engineering, consumer behavior,
-          and retention.
-        </p>
-      </div>
+          <p>
+            I'm the founder of <a href="https://emailoptimize.com" target="_blank" rel="noopener noreferrer">emailoptimize.com</a>, <a href="https://trustalytics.ai" target="_blank" rel="noopener noreferrer">trustalytics.ai</a> and <a href="https://dortamethod.com" target="_blank" rel="noopener noreferrer">dortamethod.com</a> (currently in R&D), where my focus has
+            been on understanding how consumer trust, relevance, and behavior compound or decay over
+            time inside email systems.
+          </p>
+        </div>
 
       <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
         <h2 className="text-base font-semibold mb-2.5 text-black">What I do</h2>
@@ -44,10 +39,10 @@ export default async function Home() {
             in Australia, and became early-interested in quantifying consumer trust long before the tooling
             existed to support it.
           </p>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
+      <section className="mt-4 pt-3 border-t border-gray-300 border-dashed">
         <h2 className="text-base font-semibold mb-2.5 text-black">My approach</h2>
         <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
           <p className="font-semibold">
